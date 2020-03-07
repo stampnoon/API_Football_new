@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Football_API
 {
@@ -27,6 +28,7 @@ namespace Football_API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -48,7 +50,7 @@ namespace Football_API
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors(builder => builder.WithOrigins("*").AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -60,6 +62,7 @@ namespace Football_API
                 c.RoutePrefix = string.Empty;
             });
             app.UseMvc();
+
         }
     }
 }

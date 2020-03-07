@@ -7,7 +7,6 @@ using Football_API.Models.Models_Fixture;
 using Football_API.Models.Models_Odds;
 using Football_API.Models;
 using Newtonsoft.Json;
-using RestSharp;
 
 namespace FootballAPI.Controllers
 {
