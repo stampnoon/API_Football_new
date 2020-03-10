@@ -206,10 +206,10 @@ namespace FootballAPI.Controllers
             return Ret_LeagureOddsFixture.OrderBy(c => c.LeagueCountry).ToList();
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<List_LeagueOddsFixture>> GetOdds_SoccerAllLeague_ThisDay()
+        [HttpPost]
+        public ActionResult<IEnumerable<List_LeagueOddsFixture>> GetOdds_SoccerAllLeague_ThisDay([FromBody] string[] AllLeague)
         {
-            string[] Hot_League = HotLeague.HotLeagueID;
+            string[] Hot_League = AllLeague;
             string date = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US"));
             double perHome = 0, perDraw = 0, perAway = 0;
             string OddsMaker = "";
