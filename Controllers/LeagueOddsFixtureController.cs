@@ -311,7 +311,7 @@ namespace FootballAPI.Controllers
             return Ret_LeagureOddsFixture.OrderBy(c => c.LeagueCountry).ToList();
         }
 
-        [HttpGet]
+        //[HttpGet]
         // public void StartWriteData_Fixture()
         // {
         //     aTimer.Interval = 10000;
