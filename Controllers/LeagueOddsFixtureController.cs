@@ -34,12 +34,12 @@ namespace FootballAPI.Controllers
             string JsonStr_Fixture = GetFixtureByLeagueIDwithDate(leagueID, date);
             List<RootObjectFixture> APIJsonObjectFixture = JsonConvert.DeserializeObject<List<RootObjectFixture>>(JsonStr_Fixture);
 
-            if (APIJsonObjectFixture[0].api.fixtures.Count != 0)
+            if (APIJsonObjectFixture[0].api.fixtures.Count > 0)
             {
                 //Get Json object Odds
                 string JsonStr_Odds = GetOddByLeagueID(leagueID);
                 List<RootObjectOdds> APIJsonObjectOdds = JsonConvert.DeserializeObject<List<RootObjectOdds>>(JsonStr_Odds);
-                if (APIJsonObjectOdds[0].api.odds.Count != 0)
+                if (APIJsonObjectOdds[0].api.odds.Count > 0)
                 {
                     //====== Match FixtureID between "Fixture" & "Odds" =======
                     foreach (var eachfixture in APIJsonObjectFixture[0].api.fixtures)
@@ -98,17 +98,17 @@ namespace FootballAPI.Controllers
                             ListLeagueFixOdds.Add(item);
                         }
                     }
+                    //Add into Return List
+                    var item2 = new List_LeagueOddsFixture
+                    {
+                        LeagueID = ListLeagueFixOdds[0].LeagueID,
+                        LeagueName = ListLeagueFixOdds[0].LeagueName,
+                        LeagueFlag = ListLeagueFixOdds[0].LeagueFlag,
+                        LeagueCountry = ListLeagueFixOdds[0].LeagueCountry,
+                        LeagueOddsFixture = ListLeagueFixOdds.OrderBy(c => c.EventDate).ToList()
+                    };
+                    Ret_LeagureOddsFixture.Add(item2);
                 }
-                //Add into Return List
-                var item2 = new List_LeagueOddsFixture
-                {
-                    LeagueID = ListLeagueFixOdds[0].LeagueID,
-                    LeagueName = ListLeagueFixOdds[0].LeagueName,
-                    LeagueFlag = ListLeagueFixOdds[0].LeagueFlag,
-                    LeagueCountry = ListLeagueFixOdds[0].LeagueCountry,
-                    LeagueOddsFixture = ListLeagueFixOdds.OrderBy(c => c.EventDate).ToList()
-                };
-                Ret_LeagureOddsFixture.Add(item2);
             }
             return Ret_LeagureOddsFixture;
         }
@@ -127,12 +127,12 @@ namespace FootballAPI.Controllers
                 //Get Json object Fixture
                 string JsonStr_Fixture = GetFixtureByLeagueIDwithDate(leagueID, date);
                 List<RootObjectFixture> APIJsonObjectFixture = JsonConvert.DeserializeObject<List<RootObjectFixture>>(JsonStr_Fixture);
-                if (APIJsonObjectFixture[0].api.fixtures.Count != 0)
+                if (APIJsonObjectFixture[0].api.fixtures.Count > 0)
                 {
                     //Get Json object Odds
                     string JsonStr_Odds = GetOddByLeagueID(leagueID);
                     List<RootObjectOdds> APIJsonObjectOdds = JsonConvert.DeserializeObject<List<RootObjectOdds>>(JsonStr_Odds);
-                    if (APIJsonObjectOdds[0].api.odds.Count != 0)
+                    if (APIJsonObjectOdds[0].api.odds.Count > 0)
                     {
                         foreach (var eachfixture in APIJsonObjectFixture[0].api.fixtures)
                         {
@@ -190,17 +190,17 @@ namespace FootballAPI.Controllers
                                 ListLeagueFixOdds.Add(item);
                             }
                         }
+                        //Add into Return List
+                        var item2 = new List_LeagueOddsFixture
+                        {
+                            LeagueID = ListLeagueFixOdds[0].LeagueID,
+                            LeagueName = ListLeagueFixOdds[0].LeagueName,
+                            LeagueFlag = ListLeagueFixOdds[0].LeagueFlag,
+                            LeagueCountry = ListLeagueFixOdds[0].LeagueCountry,
+                            LeagueOddsFixture = ListLeagueFixOdds.OrderBy(c => c.EventDate).ToList()
+                        };
+                        Ret_LeagureOddsFixture.Add(item2);
                     }
-                    //Add into Return List
-                    var item2 = new List_LeagueOddsFixture
-                    {
-                        LeagueID = ListLeagueFixOdds[0].LeagueID,
-                        LeagueName = ListLeagueFixOdds[0].LeagueName,
-                        LeagueFlag = ListLeagueFixOdds[0].LeagueFlag,
-                        LeagueCountry = ListLeagueFixOdds[0].LeagueCountry,
-                        LeagueOddsFixture = ListLeagueFixOdds.OrderBy(c => c.EventDate).ToList()
-                    };
-                    Ret_LeagureOddsFixture.Add(item2);
                 }
             }
             return Ret_LeagureOddsFixture.OrderBy(c => c.LeagueCountry).ToList();
@@ -219,7 +219,7 @@ namespace FootballAPI.Controllers
             string JsonStr_Fixture = GetAllFixtureThisDay(date);
             List<RootObjectFixture> APIJsonObjectFixture = JsonConvert.DeserializeObject<List<RootObjectFixture>>(JsonStr_Fixture);
 
-            if (APIJsonObjectFixture[0].api.fixtures.Count != 0)
+            if (APIJsonObjectFixture[0].api.fixtures.Count > 0)
             {
                 //Group by leagueID in all Fixture
                 var groupLeagueID = from lstfixture in APIJsonObjectFixture[0].api.fixtures
@@ -236,7 +236,7 @@ namespace FootballAPI.Controllers
                         //Get Json object Odds
                         string JsonStr_Odds = GetOddByLeagueID(ID);
                         List<RootObjectOdds> APIJsonObjectOdds = JsonConvert.DeserializeObject<List<RootObjectOdds>>(JsonStr_Odds);
-                        if (APIJsonObjectOdds[0].api.odds.Count != 0)
+                        if (APIJsonObjectOdds[0].api.odds.Count > 0)
                         {
                             foreach (var eachLstOdds in APIJsonObjectOdds[0].api.odds)
                             {
@@ -294,17 +294,17 @@ namespace FootballAPI.Controllers
                                     ListLeagueFixOdds.Add(item);
                                 }
                             }
+                            //Add into Return List
+                            var item2 = new List_LeagueOddsFixture
+                            {
+                                LeagueID = ListLeagueFixOdds[0].LeagueID,
+                                LeagueName = ListLeagueFixOdds[0].LeagueName,
+                                LeagueFlag = ListLeagueFixOdds[0].LeagueFlag,
+                                LeagueCountry = ListLeagueFixOdds[0].LeagueCountry,
+                                LeagueOddsFixture = ListLeagueFixOdds.OrderBy(c => c.EventDate).ToList()
+                            };
+                            Ret_LeagureOddsFixture.Add(item2);
                         }
-                        //Add into Return List
-                        var item2 = new List_LeagueOddsFixture
-                        {
-                            LeagueID = ListLeagueFixOdds[0].LeagueID,
-                            LeagueName = ListLeagueFixOdds[0].LeagueName,
-                            LeagueFlag = ListLeagueFixOdds[0].LeagueFlag,
-                            LeagueCountry = ListLeagueFixOdds[0].LeagueCountry,
-                            LeagueOddsFixture = ListLeagueFixOdds.OrderBy(c => c.EventDate).ToList()
-                        };
-                        Ret_LeagureOddsFixture.Add(item2);
                     }
                 }
             }
@@ -352,7 +352,7 @@ namespace FootballAPI.Controllers
         //     {
         //         string JsonStr_Fixture = GetALLFixtureByLeagueID(LeagueID);
         //         List<RootObjectFixture> APIJsonObjectFixture = JsonConvert.DeserializeObject<List<RootObjectFixture>>(JsonStr_Fixture);
-        //         if (APIJsonObjectFixture[0].api.fixtures.Count != 0)
+        //         if (APIJsonObjectFixture[0].api.fixtures.Count > 0)
         //         {
         //             FileStream fs_fixture = new FileStream(LeagueID + ".txt", FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
         //             StreamWriter textWriter_fixture = new StreamWriter(fs_fixture);
@@ -362,7 +362,7 @@ namespace FootballAPI.Controllers
 
         //             string JsonStr_Odds = GetOddByLeagueID(LeagueID);
         //             List<RootObjectOdds> APIJsonObjectOdds = JsonConvert.DeserializeObject<List<RootObjectOdds>>(JsonStr_Odds);
-        //             if (APIJsonObjectOdds[0].api.odds.Count != 0)
+        //             if (APIJsonObjectOdds[0].api.odds.Count > 0)
         //             {
         //                 FileStream fs_odds = new FileStream("Odds_" + LeagueID + ".txt", FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
         //                 StreamWriter textWriter_Odds = new StreamWriter(fs_odds);
