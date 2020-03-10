@@ -119,18 +119,19 @@ namespace FootballAPI.Controllers
             string date = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US"));
             double perHome = 0, perDraw = 0, perAway = 0;
             string OddsMaker = "";
+            string JsonStr_Fixture = "", JsonStr_Odds = "";
             List<List_LeagueOddsFixture> Ret_LeagureOddsFixture = new List<List_LeagueOddsFixture>();
 
             foreach (string leagueID in AllLeague)
             {
                 List<LeagueOddsFixture> ListLeagueFixOdds = new List<LeagueOddsFixture>();
                 //Get Json object Fixture
-                string JsonStr_Fixture = GetFixtureByLeagueIDwithDate(leagueID, date);
+                JsonStr_Fixture = GetFixtureByLeagueIDwithDate(leagueID, date);
                 List<RootObjectFixture> APIJsonObjectFixture = JsonConvert.DeserializeObject<List<RootObjectFixture>>(JsonStr_Fixture);
                 if (APIJsonObjectFixture[0].api.fixtures.Count > 0)
                 {
                     //Get Json object Odds
-                    string JsonStr_Odds = GetOddByLeagueID(leagueID);
+                    JsonStr_Odds = GetOddByLeagueID(leagueID);
                     List<RootObjectOdds> APIJsonObjectOdds = JsonConvert.DeserializeObject<List<RootObjectOdds>>(JsonStr_Odds);
                     if (APIJsonObjectOdds[0].api.odds.Count > 0)
                     {
