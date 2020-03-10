@@ -4,7 +4,7 @@ namespace Football_API.Models
 {
     public class API
     {
-        public static string apiKEY = "6c5f1952camsha2f1f94a1215a7fp1832fdjsn21cc3ec4de1a";
+        public static string apiKEY = "5bf676a981mshe3181cdd166ef43p158898jsne9c7702a6c2d";
 
         public string callAPIService(string URL)
         {
