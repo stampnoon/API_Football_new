@@ -49,7 +49,7 @@ namespace FootballAPI.Controllers
         public void StartGetData_OddsFixture()
         {
             GetData_LeagueOdds(); //รอบแรกหลังจากเริ่ม run function
-            int second = 60;
+            int second = 3600; //1 hr
             aTimer.Interval = second * 1000;
             aTimer.Elapsed += Interval_GetData_LeagueOdds;
             aTimer.Start();
@@ -167,7 +167,10 @@ namespace FootballAPI.Controllers
                                     PerDraw = perDraw.ToString(),
                                     PerAway = perAway.ToString()
                                 };
-                                ListLeagueFixOdds.Add(item);
+                                if (FixtureMatch.status.ToLower().IndexOf("postponed") < 0)
+                                {
+                                    ListLeagueFixOdds.Add(item);
+                                }
                             }
                         }
                         if (ListLeagueFixOdds.Count > 0)
