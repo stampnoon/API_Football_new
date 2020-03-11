@@ -46,10 +46,10 @@ namespace FootballAPI.Controllers
         }
 
         [HttpGet]
-        public void StartWriteData_Fixture()
+        public void StartGetData_OddsFixture()
         {
-            int second = 30;
             First_GetData_LeagueOdds();
+            int second = 30;
             aTimer.Interval = second * 1000;
             aTimer.Elapsed += GetData_LeagueOdds;
             aTimer.Start();
