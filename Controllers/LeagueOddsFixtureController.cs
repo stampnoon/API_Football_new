@@ -28,6 +28,13 @@ namespace FootballAPI.Controllers
             return Ret_LeagureOddsFixture;
         }
 
+        [HttpGet("{country}")]
+        public ActionResult<IEnumerable<List_LeagueOddsFixture>> GetOdds_SoccerByCountry_ThisDay(string country)
+        {
+            var Ret_LeagureOddsFixture = Temp_List_LeagueOddsFixture.Where(it => it.LeagueCountry.ToLower() == country.ToLower()).ToList();
+            return Ret_LeagureOddsFixture;
+        }
+
         [HttpPost]
         public ActionResult<IEnumerable<List_LeagueOddsFixture>> GetOdds_SoccerManyLeague_ThisDay([FromBody] string[] AllLeague)
         {
