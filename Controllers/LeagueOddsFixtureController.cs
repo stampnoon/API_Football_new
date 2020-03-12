@@ -21,6 +21,51 @@ namespace FootballAPI.Controllers
 
 
         #region ================ Public Function ================
+        [HttpGet]
+        public ActionResult<IEnumerable<List_LeagueOddsFixture>> GetOdds_SoccerHighlight_ThisDay()
+        {
+            string[] Highlight_Country = { };
+            List<List_LeagueOddsFixture> Ret_LeagureOddsFixture = new List<List_LeagueOddsFixture>();
+
+            switch (DateTime.Now.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    Highlight_Country = new string[] { "World", "England", "Thailand", "Germany", "Portugal", "Turkey", "Denmark", "Netherlands", "Scotland", "Ireland", "Northern-Ireland" };
+                    break;
+                case DayOfWeek.Tuesday:
+                    Highlight_Country = new string[] { "World", "England", "Thailand", "Turkey", "Scotland" };
+                    break;
+                case DayOfWeek.Wednesday:
+                    Highlight_Country = new string[] { "World", "England", "Thailand", "Turkey", "Scotland" };
+                    break;
+                case DayOfWeek.Thursday:
+                    Highlight_Country = new string[] { "World", "England", "Thailand", "Turkey" };
+                    break;
+                case DayOfWeek.Friday:
+                    Highlight_Country = new string[] { "World", "England", "Thailand", "Germany", "Spain", "France", "Netherlands", "Portugal", "Ireland", "Northern-Ireland" };
+                    break;
+                case DayOfWeek.Saturday:
+                    Highlight_Country = new string[] { "World", "England", "Thailand", "Germany", "Italy", "Spain", "France", "Netherlands", "Portugal" };
+                    break;
+                case DayOfWeek.Sunday:
+                    Highlight_Country = new string[] { "World", "England", "Thailand", "Germany", "Italy", "Spain", "France", "Netherlands", "Portugal", "Denmark", "Switzerland", "Turkey", "Belgium", "Scotland" };
+                    break;
+            }
+            //Loop country
+            foreach (var country in Highlight_Country)
+            {
+                //Loop all fixture for check with country
+                foreach (var eachleagueOdd in Temp_List_LeagueOddsFixture)
+                {
+                    if (eachleagueOdd.LeagueCountry.ToLower() == country.ToLower())
+                    {
+                        Ret_LeagureOddsFixture.Add(eachleagueOdd);
+                    }
+                }
+            }
+            return Ret_LeagureOddsFixture;
+        }
+
         [HttpGet("{leagueID}")]
         public ActionResult<List_LeagueOddsFixture> GetOdds_SoccerByLeague_ThisDay(string leagueID)
         {
@@ -38,7 +83,6 @@ namespace FootballAPI.Controllers
         [HttpPost]
         public ActionResult<IEnumerable<List_LeagueOddsFixture>> GetOdds_SoccerManyLeague_ThisDay([FromBody] string[] AllLeague)
         {
-            string date = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US"));
             List<List_LeagueOddsFixture> Ret_LeagureOddsFixture = new List<List_LeagueOddsFixture>();
 
             foreach (string leagueID in AllLeague)
