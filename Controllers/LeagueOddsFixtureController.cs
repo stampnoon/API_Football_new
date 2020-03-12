@@ -214,9 +214,9 @@ namespace FootballAPI.Controllers
                                     OddsHome = oddHome.odd,
                                     OddsDraw = oddDraw.odd,
                                     OddsAway = oddAway.odd,
-                                    PerHome = perHome.ToString(),
-                                    PerDraw = perDraw.ToString(),
-                                    PerAway = perAway.ToString()
+                                    PerHome =  string.Format("{0:00.############}",perHome),
+                                    PerDraw =  string.Format("{0:00.############}",perDraw),
+                                    PerAway =  string.Format("{0:00.############}",perAway)
                                 };
                                 if (FixtureMatch.status.ToLower().IndexOf("postponed") < 0)
                                 {
