@@ -21,6 +21,16 @@ namespace FootballAPI.Controllers
 
 
         #region ================ Public Function ================
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Football_API.Models.Models_Fixture.Fixture>> Test_Get_AllSoccerLeague_ThisDay()
+        {
+            string date = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US"));
+            string JsonStr_Fixture = GetAllFixtureThisDay(date);
+            List<RootObjectFixture> APIJsonObjectFixture = JsonConvert.DeserializeObject<List<RootObjectFixture>>(JsonStr_Fixture);
+            return APIJsonObjectFixture[0].api.fixtures.ToList();
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<List_LeagueOddsFixture>> GetOdds_SoccerHighlight_ThisDay()
         {
@@ -64,6 +74,12 @@ namespace FootballAPI.Controllers
                 }
             }
             return Ret_LeagureOddsFixture;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<List_LeagueOddsFixture>> GetOdds_AllSoccerLeague_ThisDay()
+        {
+            return Temp_List_LeagueOddsFixture.OrderBy(c => c.LeagueCountry).ToList();
         }
 
         [HttpGet("{leagueID}")]
@@ -214,9 +230,9 @@ namespace FootballAPI.Controllers
                                     OddsHome = oddHome.odd,
                                     OddsDraw = oddDraw.odd,
                                     OddsAway = oddAway.odd,
-                                    PerHome =  string.Format("{0:00.############}",perHome),
-                                    PerDraw =  string.Format("{0:00.############}",perDraw),
-                                    PerAway =  string.Format("{0:00.############}",perAway)
+                                    PerHome = string.Format("{0:00.############}", perHome),
+                                    PerDraw = string.Format("{0:00.############}", perDraw),
+                                    PerAway = string.Format("{0:00.############}", perAway)
                                 };
                                 if (FixtureMatch.status.ToLower().IndexOf("postponed") < 0)
                                 {
