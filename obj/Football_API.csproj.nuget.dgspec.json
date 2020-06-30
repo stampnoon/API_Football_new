@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Ionic Project\\Football_API\\API_Football_new\\Football_API.csproj": {}
+    "D:\\Work\\API_Football_new\\Football_API.csproj": {}
   },
   "projects": {
-    "E:\\Ionic Project\\Football_API\\API_Football_new\\Football_API.csproj": {
+    "D:\\Work\\API_Football_new\\Football_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Ionic Project\\Football_API\\API_Football_new\\Football_API.csproj",
+        "projectUniqueName": "D:\\Work\\API_Football_new\\Football_API.csproj",
         "projectName": "Football_API",
-        "projectPath": "E:\\Ionic Project\\Football_API\\API_Football_new\\Football_API.csproj",
-        "packagesPath": "C:\\Users\\oThStaMpo\\.nuget\\packages\\",
-        "outputPath": "E:\\Ionic Project\\Football_API\\API_Football_new\\obj\\",
+        "projectPath": "D:\\Work\\API_Football_new\\Football_API.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\Work\\API_Football_new\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\oThStaMpo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

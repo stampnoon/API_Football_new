@@ -18,6 +18,7 @@ namespace FootballAPI.Controllers
         API API = new API();
         System.Timers.Timer aTimer = new System.Timers.Timer();
         public static List<List_LeagueOddsFixture> Temp_List_LeagueOddsFixture = new List<List_LeagueOddsFixture> { };
+        public static List<RootObjectOdds> ObjectOddsAllPaging1 = new List<RootObjectOdds> { };
 
 
         #region ================ Public Function ================
@@ -26,44 +27,99 @@ namespace FootballAPI.Controllers
         {
             string[] Highlight_Country = { };
             List<List_LeagueOddsFixture> Ret_LeagureOddsFixture = new List<List_LeagueOddsFixture>();
-
-            switch (DateTime.Now.DayOfWeek)
+            List<List_LeagueOddsFixture> Ret_LeagureOddsFixtureHot = new List<List_LeagueOddsFixture>();
+            List<List_LeagueOddsFixture> Ret_LeagureOddsFixtureNotHot = new List<List_LeagueOddsFixture>();
+            int CountAll = Temp_List_LeagueOddsFixture.Count;
+            for (int i = 0; i < CountAll; i++)
             {
-                case DayOfWeek.Monday:
-                    Highlight_Country = new string[] { "World", "England", "Thailand", "Germany", "Portugal", "Turkey", "Denmark", "Netherlands", "Scotland", "Ireland", "Northern-Ireland" };
-                    break;
-                case DayOfWeek.Tuesday:
-                    Highlight_Country = new string[] { "World", "England", "Thailand", "Turkey", "Scotland" };
-                    break;
-                case DayOfWeek.Wednesday:
-                    Highlight_Country = new string[] { "World", "England", "Thailand", "Turkey", "Scotland" };
-                    break;
-                case DayOfWeek.Thursday:
-                    Highlight_Country = new string[] { "World", "England", "Thailand", "Turkey" };
-                    break;
-                case DayOfWeek.Friday:
-                    Highlight_Country = new string[] { "World", "England", "Thailand", "Germany", "Spain", "France", "Netherlands", "Portugal", "Ireland", "Northern-Ireland" };
-                    break;
-                case DayOfWeek.Saturday:
-                    Highlight_Country = new string[] { "World", "England", "Thailand", "Germany", "Italy", "Spain", "France", "Netherlands", "Portugal" };
-                    break;
-                case DayOfWeek.Sunday:
-                    Highlight_Country = new string[] { "World", "England", "Thailand", "Germany", "Italy", "Spain", "France", "Netherlands", "Portugal", "Denmark", "Switzerland", "Turkey", "Belgium", "Scotland" };
-                    break;
-            }
-            //Loop country
-            foreach (var country in Highlight_Country)
-            {
-                //Loop all fixture for check with country
-                foreach (var eachleagueOdd in Temp_List_LeagueOddsFixture)
+                if (Temp_List_LeagueOddsFixture[i].LeagueID == "524")
                 {
-                    if (eachleagueOdd.LeagueCountry.ToLower() == country.ToLower())
-                    {
-                        Ret_LeagureOddsFixture.Add(eachleagueOdd);
-                    }
+                    Ret_LeagureOddsFixtureHot.Add(Temp_List_LeagueOddsFixture[i]);
+                }
+                else if (Temp_List_LeagueOddsFixture[i].LeagueID == "891")
+                {
+                    Ret_LeagureOddsFixtureHot.Add(Temp_List_LeagueOddsFixture[i]);
+                }
+                else if (Temp_List_LeagueOddsFixture[i].LeagueID == "775")
+                {
+                    Ret_LeagureOddsFixtureHot.Add(Temp_List_LeagueOddsFixture[i]);
+                }
+                else if (Temp_List_LeagueOddsFixture[i].LeagueID == "754")
+                {
+                    Ret_LeagureOddsFixtureHot.Add(Temp_List_LeagueOddsFixture[i]);
+                }
+                else if (Temp_List_LeagueOddsFixture[i].LeagueID == "525")
+                {
+                    Ret_LeagureOddsFixtureHot.Add(Temp_List_LeagueOddsFixture[i]);
+                }
+                else
+                {
+                    Ret_LeagureOddsFixtureNotHot.Add(Temp_List_LeagueOddsFixture[i]);
                 }
             }
+
+            if (Ret_LeagureOddsFixtureHot.Count > 0)
+            {
+                foreach (var DataLeagueHot in Ret_LeagureOddsFixtureHot)
+                {
+                    Ret_LeagureOddsFixture.Add(DataLeagueHot);
+                }
+                foreach (var DataLeagueNotHot in Ret_LeagureOddsFixtureNotHot)
+                {
+                    Ret_LeagureOddsFixture.Add(DataLeagueNotHot);
+                }
+            }
+            else
+            {
+                foreach (var DataLeagueNotHot in Ret_LeagureOddsFixtureNotHot)
+                {
+                    Ret_LeagureOddsFixture.Add(DataLeagueNotHot);
+                }
+            }
+
+            // switch (DateTime.Now.DayOfWeek)
+            // {
+            //     case DayOfWeek.Monday:
+            //         Highlight_Country = new string[] { "World", "England", "Thailand", "Germany", "Portugal", "Turkey", "Denmark", "Netherlands", "Scotland", "Ireland", "Northern-Ireland" };
+            //         break;
+            //     case DayOfWeek.Tuesday:
+            //         Highlight_Country = new string[] { "England", "Germany", "Spain", "Italy" , "France"};
+            //         break;
+            //     case DayOfWeek.Wednesday:
+            //         Highlight_Country = new string[] { "World", "England", "Thailand", "Turkey", "Scotland" };
+            //         break;
+            //     case DayOfWeek.Thursday:
+            //         Highlight_Country = new string[] { "World", "England", "Thailand", "Turkey" };
+            //         break;
+            //     case DayOfWeek.Friday:
+            //         Highlight_Country = new string[] { "World", "England", "Thailand", "Germany", "Spain", "France", "Netherlands", "Portugal", "Ireland", "Northern-Ireland", "Italy" };
+            //         break;
+            //     case DayOfWeek.Saturday:
+            //         Highlight_Country = new string[] { "World", "England", "Thailand", "Germany", "Italy", "Spain", "France", "Netherlands", "Portugal" };
+            //         break;
+            //     case DayOfWeek.Sunday:
+            //         Highlight_Country = new string[] { "World", "England", "Thailand", "Germany", "Italy", "Spain", "France", "Netherlands", "Portugal", "Denmark", "Switzerland", "Turkey", "Belgium", "Scotland" };
+            //         break;
+            // }
+            // //Loop country
+            // foreach (var country in Highlight_Country)
+            // {
+            //     //Loop all fixture for check with country
+            //     foreach (var eachleagueOdd in Temp_List_LeagueOddsFixture)
+            //     {
+            //         if (eachleagueOdd.LeagueCountry.ToLower() == country.ToLower())
+            //         {
+            //             Ret_LeagureOddsFixture.Add(eachleagueOdd);
+            //         }
+            //     }
+            // }
             return Ret_LeagureOddsFixture;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<List_LeagueOddsFixture>> GetAllOddsDay()
+        {
+            return Temp_List_LeagueOddsFixture;
         }
 
         [HttpGet("{leagueID}")]
@@ -96,6 +152,119 @@ namespace FootballAPI.Controllers
             return Ret_LeagureOddsFixture.OrderBy(c => c.LeagueCountry).ToList();
         }
 
+        [HttpGet("{leagueID}")]
+        public ActionResult<IEnumerable<RootObjectOdds>> GetALLFixtureByLeagueIDtest(string leagueID)
+        {
+            string URL = "https://api-football-v1.p.rapidapi.com/v2/odds/league/" + leagueID + "/label/1";
+            string getresult = API.callAPIService(URL);
+            List<RootObjectOdds> APIJsonObjectOdds2 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(getresult);
+            int total = APIJsonObjectOdds2[0].api.paging.total;
+            return APIJsonObjectOdds2;
+        }
+
+        [HttpGet("{leagueID}")]
+        public ActionResult<IEnumerable<RootObjectOdds>> GetALLFixtureByLeagueIDtest02(string leagueID)
+        {
+            string URL = "https://api-football-v1.p.rapidapi.com/v2/odds/league/" + leagueID + "/label/1?page=1";
+            string getresult = API.callAPIService(URL);
+            List<RootObjectOdds> APIJsonObjectOdds2 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(getresult);
+            int total = APIJsonObjectOdds2[0].api.paging.total;
+            for (int i = 2; i <= total; i++)
+            {
+                string URL2 = "https://api-football-v1.p.rapidapi.com/v2/odds/league/" + leagueID + "/label/1?page=" + i.ToString();
+                string getresult01 = API.callAPIService(URL2);
+                List<RootObjectOdds> APIJsonObjectOdds02 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(getresult01);
+                APIJsonObjectOdds2.AddRange(APIJsonObjectOdds02);
+            }
+            return APIJsonObjectOdds2;
+        }
+
+        [HttpGet("{leagueID}")]
+        public ActionResult<IEnumerable<RootObjectOdds>> GetALLFixtureByLeagueIDtestReturnString(string leagueID)
+        {
+            string URL = "https://api-football-v1.p.rapidapi.com/v2/odds/league/" + leagueID + "/label/1?page=1";
+            string getresult = API.callAPIService(URL);
+            List<RootObjectOdds> APIJsonObjectOdds2 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(getresult);
+            int total = APIJsonObjectOdds2[0].api.paging.total;
+            for (int i = 2; i <= total; i++)
+            {
+                string URL2 = "https://api-football-v1.p.rapidapi.com/v2/odds/league/" + leagueID + "/label/1?page=" + i.ToString();
+
+                string getresult01 = API.callAPIService(URL2);
+                List<RootObjectOdds> APIJsonObjectOdds02 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(getresult01);
+
+                APIJsonObjectOdds2[0].api.odds.AddRange(APIJsonObjectOdds02[0].api.odds);
+            }
+
+            string JsonObjectOddsString = "";
+            JsonObjectOddsString = JsonConvert.SerializeObject(APIJsonObjectOdds2);
+            List<RootObjectOdds> APIJsonObjectOdds03 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(JsonObjectOddsString);
+            // string getresult02 = getresult;
+            return APIJsonObjectOdds03;
+        }
+
+
+        [HttpGet("{FixtureID}")]
+        public ActionResult<IEnumerable<RootObjectOdds>> GetALLFixtureByFixtureIDtest(string FixtureID)
+        {
+            string URL = "https://api-football-v1.p.rapidapi.com/v2/odds/fixture/" + FixtureID;
+            string getresult = API.callAPIService(URL);
+            List<RootObjectOdds> APIJsonObjectOdds3 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(getresult);
+            return APIJsonObjectOdds3;
+        }
+
+        [HttpGet]
+        public string Getfixtureday()
+        {
+            string test = "";
+            string date = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US"));
+            test = GetAllFixtureThisDay(date);
+            return test;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<RootObjectOdds>> GetOddsday()
+        {
+            // string test = "";
+            string date = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US"));
+            string URL = "https://api-football-v1.p.rapidapi.com/v2/odds/date/" + date;
+            string getresult = API.callAPIService(URL);
+            List<RootObjectOdds> APIJsonObjectOdds2 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(getresult);
+            return APIJsonObjectOdds2;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<RootObjectOdds>> GetOddsdaypaging()
+        {
+            // string test = "";
+            string date = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US"));
+            string URL = "https://api-football-v1.p.rapidapi.com/v2/odds/date/" + date;
+            string getresult = API.callAPIService(URL);
+            List<RootObjectOdds> APIJsonObjectOdds2 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(getresult);
+            int total = APIJsonObjectOdds2[0].api.paging.total;
+            for (int i = 2; i <= total; i++)
+            {
+                string URL2 = "https://api-football-v1.p.rapidapi.com/v2/odds/date/" + date + "/label/1?page=" + i.ToString();
+                string getresult01 = API.callAPIService(URL2);
+                List<RootObjectOdds> APIJsonObjectOdds02 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(getresult01);
+                APIJsonObjectOdds2.AddRange(APIJsonObjectOdds02);
+            }
+            // APIJsonObjectOdds2[1].api.odds.
+            return APIJsonObjectOdds2;
+        }
+
+        // [HttpGet]
+        // public ActionResult<IEnumerable<RootObjectFixture>> GetALLFixtureInDayTest()
+        // // public string Getdatafix()
+        // {
+        //     string date = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US"));
+        //     string URL = "https://api-football-v1.p.rapidapi.com/v2/fixtures/date/" + date.ToString();
+        //     string getresult2 = API.callAPIService(URL);
+        //     List<RootObjectFixture> APIJsonObjectFixture2 = JsonConvert.DeserializeObject<List<RootObjectFixture>>(getresult2);
+        //     return APIJsonObjectFixture2;
+        //     // return getresult2;
+        // }
+
         [HttpGet]
         public void StartGetData_OddsFixture()
         {
@@ -126,10 +295,39 @@ namespace FootballAPI.Controllers
             return API.callAPIService(URL);
         }
 
+        private string GetOddByFixtureID(string FixtureID)
+        {
+            string URL = "https://api-football-v1.p.rapidapi.com/v2/odds/fixture/" + FixtureID + "/label/1";
+            return API.callAPIService(URL);
+        }
+
         private string GetAllFixtureThisDay(string date)
         {
             string URL = "https://api-football-v1.p.rapidapi.com/v2/fixtures/date/" + date;
             return API.callAPIService(URL);
+        }
+
+        private string GetObjectOddLeagueIDAllPaging(string leagueID)
+        {
+            string URL = "https://api-football-v1.p.rapidapi.com/v2/odds/league/" + leagueID + "/label/1?page=1";
+            string getresult = API.callAPIService(URL);
+            List<RootObjectOdds> APIJsonObjectOdds2 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(getresult);
+            int total = APIJsonObjectOdds2[0].api.paging.total;
+            for (int i = 2; i <= total; i++)
+            {
+                string URL2 = "https://api-football-v1.p.rapidapi.com/v2/odds/league/" + leagueID + "/label/1?page=" + i.ToString();
+
+                string getresult01 = API.callAPIService(URL2);
+                List<RootObjectOdds> APIJsonObjectOdds02 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(getresult01);
+
+                APIJsonObjectOdds2[0].api.odds.AddRange(APIJsonObjectOdds02[0].api.odds);
+            }
+
+            string JsonObjectOddsString = "";
+            JsonObjectOddsString = JsonConvert.SerializeObject(APIJsonObjectOdds2);
+            // List<RootObjectOdds> APIJsonObjectOdds03 = JsonConvert.DeserializeObject<List<RootObjectOdds>>(JsonObjectOddsString);
+            // string getresult02 = getresult;
+            return JsonObjectOddsString;
         }
 
         private void Interval_GetData_LeagueOdds(Object source, System.Timers.ElapsedEventArgs e)
@@ -161,8 +359,11 @@ namespace FootballAPI.Controllers
                     List<LeagueOddsFixture> ListLeagueFixOdds = new List<LeagueOddsFixture>();
 
                     //Get Json object Odds
-                    JsonStr_Odds = GetOddByLeagueID(ID);
+                    // List<RootObjectOdds> APIJsonObjectOdds = new List<RootObjectOdds>();
+                    // APIJsonObjectOdds.AddRange(GetObjectOddLeagueIDAllPaging(ID));
+                    JsonStr_Odds = GetObjectOddLeagueIDAllPaging(ID);
                     List<RootObjectOdds> APIJsonObjectOdds = JsonConvert.DeserializeObject<List<RootObjectOdds>>(JsonStr_Odds);
+
                     if (APIJsonObjectOdds[0].api.odds.Count > 0)
                     {
                         foreach (var eachLstOdds in APIJsonObjectOdds[0].api.odds)
@@ -214,9 +415,9 @@ namespace FootballAPI.Controllers
                                     OddsHome = oddHome.odd,
                                     OddsDraw = oddDraw.odd,
                                     OddsAway = oddAway.odd,
-                                    PerHome =  string.Format("{0:00.############}",perHome),
-                                    PerDraw =  string.Format("{0:00.############}",perDraw),
-                                    PerAway =  string.Format("{0:00.############}",perAway)
+                                    PerHome = string.Format("{0:00.############}", perHome),
+                                    PerDraw = string.Format("{0:00.############}", perDraw),
+                                    PerAway = string.Format("{0:00.############}", perAway)
                                 };
                                 if (FixtureMatch.status.ToLower().IndexOf("postponed") < 0)
                                 {

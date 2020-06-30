@@ -10,7 +10,14 @@ namespace Football_API.Models.Models_Odds
     public class Api
     {
         //public int results { get; set; }
+        public Paging paging { get; set; }
         public List<Odd> odds { get; set; }
+    }
+
+    public class Paging
+    {
+        public int current { get; set; }
+        public int total { get; set; }
     }
 
     public class Odd

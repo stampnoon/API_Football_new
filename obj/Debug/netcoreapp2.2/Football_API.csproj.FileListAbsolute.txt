@@ -26,3 +26,17 @@ E:\Ionic Project\Football_API\API_Football_new\obj\Debug\netcoreapp2.2\Football_
 E:\Ionic Project\Football_API\API_Football_new\obj\Debug\netcoreapp2.2\Football_API.RazorTargetAssemblyInfo.cache
 E:\Ionic Project\Football_API\API_Football_new\obj\Debug\netcoreapp2.2\Football_API.dll
 E:\Ionic Project\Football_API\API_Football_new\obj\Debug\netcoreapp2.2\Football_API.pdb
+D:\Work\API_Football_new\bin\Debug\netcoreapp2.2\Football_API.dll
+D:\Work\API_Football_new\bin\Debug\netcoreapp2.2\Football_API.deps.json
+D:\Work\API_Football_new\bin\Debug\netcoreapp2.2\Football_API.runtimeconfig.json
+D:\Work\API_Football_new\bin\Debug\netcoreapp2.2\Football_API.runtimeconfig.dev.json
+D:\Work\API_Football_new\obj\Debug\netcoreapp2.2\Football_API.csproj.CoreCompileInputs.cache
+D:\Work\API_Football_new\obj\Debug\netcoreapp2.2\Football_API.RazorAssemblyInfo.cache
+D:\Work\API_Football_new\obj\Debug\netcoreapp2.2\Football_API.RazorAssemblyInfo.cs
+D:\Work\API_Football_new\obj\Debug\netcoreapp2.2\Football_API.AssemblyInfoInputs.cache
+D:\Work\API_Football_new\obj\Debug\netcoreapp2.2\Football_API.AssemblyInfo.cs
+D:\Work\API_Football_new\obj\Debug\netcoreapp2.2\Football_API.RazorTargetAssemblyInfo.cache
+D:\Work\API_Football_new\obj\Debug\netcoreapp2.2\Football_API.dll
+D:\Work\API_Football_new\obj\Debug\netcoreapp2.2\Football_API.pdb
+D:\Work\API_Football_new\bin\Debug\netcoreapp2.2\Football_API.pdb
+D:\Work\API_Football_new\obj\Debug\netcoreapp2.2\Football_API.csprojAssemblyReference.cache
