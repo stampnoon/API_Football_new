@@ -22,6 +22,16 @@ namespace FootballAPI.Controllers
 
 
         #region ================ Public Function ================
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Football_API.Models.Models_Fixture.Fixture>> Test_Get_AllSoccerLeague_ThisDay()
+        {
+            string date = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("en-US"));
+            string JsonStr_Fixture = GetAllFixtureThisDay(date);
+            List<RootObjectFixture> APIJsonObjectFixture = JsonConvert.DeserializeObject<List<RootObjectFixture>>(JsonStr_Fixture);
+            return APIJsonObjectFixture[0].api.fixtures.ToList();
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<List_LeagueOddsFixture>> GetOdds_SoccerHighlight_ThisDay()
         {
